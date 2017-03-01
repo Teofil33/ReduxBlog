@@ -5,13 +5,16 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, browserHistory } from 'react-router';
 import reducers from './reducers';
 import routes from './routes';
+import promise from 'redux-promise';
 
 // browserHistory, hashHistory (after #) , memoryHistory
 // Whenever url updates react-router is going to interpret everything after
 // the protocol, after http://www.blog.com/posts/5 after http://www.blog.com/
 
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(
+  promise
+)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
